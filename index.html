@@ -4,57 +4,127 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flashcards Interativos</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-color: #f8fafc;
+      --card-front-color: #3b82f6;
+      --card-back-color: #0ea5e9;
+      --background: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Bai Jamjuree', sans-serif;
+      background-color: var(--background);
+      color: var(--text-color);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background-color: var(--card-front-color);
+      color: var(--text-color);
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.4s, background-color 0.4s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .card.active {
+      background-color: var(--card-back-color);
+      transform: rotateY(180deg);
+    }
+  </style>
 </head>
 <body>
   <h1>Flashcards Interativos</h1>
   <section class="cards">
-    <!-- 15 perguntas e respostas -->
-    <div class="card">Qual é a capital do Brasil?</div>
-    <div class="card">Brasília</div>
+    <!-- 15 perguntas simples -->
+    <div class="card">Qual é a cor do céu?</div>
+    <div class="card">Azul</div>
 
-    <div class="card">Quem pintou a Mona Lisa?</div>
-    <div class="card">Leonardo da Vinci</div>
+    <div class="card">Quantas pernas tem uma aranha?</div>
+    <div class="card">Oito</div>
 
-    <div class="card">Maior planeta do sistema solar?</div>
-    <div class="card">Júpiter</div>
+    <div class="card">Qual som faz o gato?</div>
+    <div class="card">Miau</div>
 
-    <div class="card">Autor de "Dom Casmurro"?</div>
-    <div class="card">Machado de Assis</div>
+    <div class="card">Qual fruta é amarela por fora e branca por dentro?</div>
+    <div class="card">Banana</div>
 
-    <div class="card">Quantos lados tem um triângulo?</div>
-    <div class="card">Três</div>
+    <div class="card">Com quantos anos uma pessoa é bebê?</div>
+    <div class="card">Até 2 anos</div>
 
-    <div class="card">Animal símbolo da Austrália?</div>
-    <div class="card">Canguru</div>
+    <div class="card">O que usamos para escrever no caderno?</div>
+    <div class="card">Lápis</div>
 
-    <div class="card">Fórmula da água?</div>
-    <div class="card">H₂O</div>
+    <div class="card">Qual o oposto de quente?</div>
+    <div class="card">Frio</div>
 
-    <div class="card">Quem descobriu o Brasil?</div>
-    <div class="card">Pedro Álvares Cabral</div>
+    <div class="card">O que usamos para ver a hora?</div>
+    <div class="card">Relógio</div>
 
-    <div class="card">Onde fica a Torre Eiffel?</div>
-    <div class="card">França</div>
+    <div class="card">Quantos dias tem uma semana?</div>
+    <div class="card">Sete</div>
 
-    <div class="card">Qual é o menor país do mundo?</div>
-    <div class="card">Vaticano</div>
+    <div class="card">Qual é a primeira letra do alfabeto?</div>
+    <div class="card">A</div>
 
-    <div class="card">Quantos segundos tem um minuto?</div>
-    <div class="card">60</div>
+    <div class="card">Qual animal faz au au?</div>
+    <div class="card">Cachorro</div>
 
-    <div class="card">Principal idioma falado no México?</div>
-    <div class="card">Espanhol</div>
+    <div class="card">Quantos olhos temos?</div>
+    <div class="card">Dois</div>
 
-    <div class="card">Quem criou a Teoria da Relatividade?</div>
-    <div class="card">Albert Einstein</div>
+    <div class="card">Qual é o nome do nosso planeta?</div>
+    <div class="card">Terra</div>
 
-    <div class="card">Número de continentes na Terra?</div>
-    <div class="card">7</div>
+    <div class="card">De que cor é a grama?</div>
+    <div class="card">Verde</div>
 
-    <div class="card">Qual planeta é conhecido como planeta vermelho?</div>
-    <div class="card">Marte</div>
+    <div class="card">O que usamos para comer sopa?</div>
+    <div class="card">Colher</div>
   </section>
-  <script src="script.js"></script>
+  <script>
+    const cards = document.querySelectorAll('.card');
+    for (let i = 0; i < cards.length; i += 2) {
+      const question = cards[i];
+      const answer = cards[i + 1];
+      question.addEventListener('click', () => {
+        question.classList.toggle('active');
+        answer.classList.toggle('active');
+      });
+      answer.addEventListener('click', () => {
+        question.classList.toggle('active');
+        answer.classList.toggle('active');
+      });
+    }
+  </script>
 </body>
 </html>
