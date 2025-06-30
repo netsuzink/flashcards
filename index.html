@@ -45,23 +45,44 @@
     }
 
     .card {
-      background-color: var(--card-front-color);
-      color: var(--text-color);
-      padding: 1rem;
+      perspective: 1000px;
+    }
+
+    .inner {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
       border-radius: 0.75rem;
-      text-align: center;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.4s, background-color 0.4s;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      min-height: 80px;
+    }
+
+    .card.active .inner {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.75rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1rem;
+      backface-visibility: hidden;
+      padding: 1rem;
     }
 
-    .card.active {
+    .front {
+      background-color: var(--card-front-color);
+      color: var(--text-color);
+    }
+
+    .back {
       background-color: var(--card-back-color);
+      color: var(--text-color);
       transform: rotateY(180deg);
     }
   </style>
@@ -70,65 +91,29 @@
   <h1>Flashcards Interativos</h1>
   <section class="cards">
     <!-- 15 perguntas simples -->
-    <div class="card">Qual é a cor do céu?</div>
-    <div class="card">Azul</div>
-
-    <div class="card">Quantas pernas tem uma aranha?</div>
-    <div class="card">Oito</div>
-
-    <div class="card">Qual som faz o gato?</div>
-    <div class="card">Miau</div>
-
-    <div class="card">Qual fruta é amarela por fora e branca por dentro?</div>
-    <div class="card">Banana</div>
-
-    <div class="card">Com quantos anos uma pessoa é bebê?</div>
-    <div class="card">Até 2 anos</div>
-
-    <div class="card">O que usamos para escrever no caderno?</div>
-    <div class="card">Lápis</div>
-
-    <div class="card">Qual o oposto de quente?</div>
-    <div class="card">Frio</div>
-
-    <div class="card">O que usamos para ver a hora?</div>
-    <div class="card">Relógio</div>
-
-    <div class="card">Quantos dias tem uma semana?</div>
-    <div class="card">Sete</div>
-
-    <div class="card">Qual é a primeira letra do alfabeto?</div>
-    <div class="card">A</div>
-
-    <div class="card">Qual animal faz au au?</div>
-    <div class="card">Cachorro</div>
-
-    <div class="card">Quantos olhos temos?</div>
-    <div class="card">Dois</div>
-
-    <div class="card">Qual é o nome do nosso planeta?</div>
-    <div class="card">Terra</div>
-
-    <div class="card">De que cor é a grama?</div>
-    <div class="card">Verde</div>
-
-    <div class="card">O que usamos para comer sopa?</div>
-    <div class="card">Colher</div>
+    <div class="card"><div class="inner"><div class="front">Qual é a cor do céu?</div><div class="back">Azul</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Quantas pernas tem uma aranha?</div><div class="back">Oito</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Qual som faz o gato?</div><div class="back">Miau</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Qual fruta é amarela por fora e branca por dentro?</div><div class="back">Banana</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Com quantos anos uma pessoa é bebê?</div><div class="back">Até 2 anos</div></div></div>
+    <div class="card"><div class="inner"><div class="front">O que usamos para escrever no caderno?</div><div class="back">Lápis</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Qual o oposto de quente?</div><div class="back">Frio</div></div></div>
+    <div class="card"><div class="inner"><div class="front">O que usamos para ver a hora?</div><div class="back">Relógio</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Quantos dias tem uma semana?</div><div class="back">Sete</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Qual é a primeira letra do alfabeto?</div><div class="back">A</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Qual animal faz au au?</div><div class="back">Cachorro</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Quantos olhos temos?</div><div class="back">Dois</div></div></div>
+    <div class="card"><div class="inner"><div class="front">Qual é o nome do nosso planeta?</div><div class="back">Terra</div></div></div>
+    <div class="card"><div class="inner"><div class="front">De que cor é a grama?</div><div class="back">Verde</div></div></div>
+    <div class="card"><div class="inner"><div class="front">O que usamos para comer sopa?</div><div class="back">Colher</div></div></div>
   </section>
   <script>
     const cards = document.querySelectorAll('.card');
-    for (let i = 0; i < cards.length; i += 2) {
-      const question = cards[i];
-      const answer = cards[i + 1];
-      question.addEventListener('click', () => {
-        question.classList.toggle('active');
-        answer.classList.toggle('active');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
       });
-      answer.addEventListener('click', () => {
-        question.classList.toggle('active');
-        answer.classList.toggle('active');
-      });
-    }
+    });
   </script>
 </body>
 </html>
